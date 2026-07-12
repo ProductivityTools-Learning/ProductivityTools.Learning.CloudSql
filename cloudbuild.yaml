@@ -1,0 +1,16 @@
+steps:
+  # Budowanie obrazu za pomocą Google Cloud Buildpacks (wykrywa Gradle i Java 21)
+  - name: 'gcr.io/k8s-skaffold/pack'
+    entrypoint: 'pack'
+    args:
+      - 'build'
+      - '$_AR_HOSTNAME/$PROJECT_ID/$_REPO_NAME/cloudsql-app:latest'
+      - '--builder'
+      - 'gcr.io/buildpacks/builder:v1'
+
+# Automatycznie wypychamy zbudowany obraz do Artifact Registry
+images:
+  - '$_AR_HOSTNAME/$PROJECT_ID/$_REPO_NAME/cloudsql-app:latest'
+
+options:
+  logging: CLOUD_LOGGING_ONLY

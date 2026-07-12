@@ -5,3 +5,8 @@
 .\gradlew.bat wrapper
 .\gradlew.bat bootrun
 ```
+
+build container
+```
+.\gradlew.bat bootBuildImage --imageName=gcr.io/pwujczyklearning/cloudsql-app
+```
