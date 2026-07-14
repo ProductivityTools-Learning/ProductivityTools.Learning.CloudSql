@@ -10,6 +10,25 @@ steps:
       - '--env'
       - 'GOOGLE_RUNTIME_VERSION=21'
 
+  # Wypychanie obrazu do Artifact Registry przed wdrożeniem
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', '$_AR_HOSTNAME/$PROJECT_ID/$_REPO_NAME/cloudsql-app:latest']
+
+  # Wdrożenie do Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'gcloud'
+    args:
+      - 'run'
+      - 'deploy'
+      - '$_SERVICE_NAME'
+      - '--image'
+      - '$_AR_HOSTNAME/$PROJECT_ID/$_REPO_NAME/cloudsql-app:latest'
+      - '--region'
+      - '$_DEPLOY_REGION'
+      - '--platform'
+      - 'managed'
+      - '--allow-unauthenticated'
+
 # Automatycznie wypychamy zbudowany obraz do Artifact Registry
 images:
   - '$_AR_HOSTNAME/$PROJECT_ID/$_REPO_NAME/cloudsql-app:latest'
@@ -20,3 +39,5 @@ options:
 substitutions:
   _AR_HOSTNAME: 'europe-central2-docker.pkg.dev'
   _REPO_NAME: 'learning-cloudsql'
+  _SERVICE_NAME: 'cloudsql-app'
+  _DEPLOY_REGION: 'europe-central2'
