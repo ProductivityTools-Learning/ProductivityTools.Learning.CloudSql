@@ -28,6 +28,12 @@ steps:
       - '--platform'
       - 'managed'
       - '--allow-unauthenticated'
+      - '--add-cloudsql-instances'
+      - '$_CLOUDSQL_INSTANCE'
+      - '--set-env-vars'
+      - 'SPRING_DATASOURCE_URL=jdbc:postgresql:///cloudsql?host=/cloudsql/$_CLOUDSQL_INSTANCE,SPRING_DATASOURCE_USERNAME=$_DB_USER'
+      - '--set-secrets'
+      - 'SPRING_DATASOURCE_PASSWORD=db-password:latest'
 
 # Automatycznie wypychamy zbudowany obraz do Artifact Registry
 images:
@@ -41,3 +47,5 @@ substitutions:
   _REPO_NAME: 'learning-cloudsql'
   _SERVICE_NAME: 'cloudsql-app'
   _DEPLOY_REGION: 'europe-central2'
+  _CLOUDSQL_INSTANCE: 'pwujczyk-net-1:us-central1:pw-learning-sql'
+  _DB_USER: 'postgres'
