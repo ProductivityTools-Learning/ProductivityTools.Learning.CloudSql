@@ -19,4 +19,4 @@ options:
 
 substitutions:
   _AR_HOSTNAME: 'europe-central2-docker.pkg.dev'
-  _REPO_NAME: 'docker-repo'
+  _REPO_NAME: 'learning-cloudsql'
