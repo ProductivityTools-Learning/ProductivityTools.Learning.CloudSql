@@ -31,7 +31,7 @@ steps:
       - '--add-cloudsql-instances'
       - '$_CLOUDSQL_INSTANCE'
       - '--set-env-vars'
-      - 'SPRING_DATASOURCE_URL=jdbc:postgresql://localhost/cloudsql?socketFactory=org.postgresql.socket.UnixSocketFactory&socketFactoryArg=/cloudsql/$_CLOUDSQL_INSTANCE,SPRING_DATASOURCE_USERNAME=$_DB_USER'
+      - 'SPRING_DATASOURCE_URL=jdbc:postgresql:///cloudsql?cloudSqlInstance=$_CLOUDSQL_INSTANCE&socketFactory=com.google.cloud.sql.postgres.SocketFactory,SPRING_DATASOURCE_USERNAME=$_DB_USER'
       - '--set-secrets'
       - 'SPRING_DATASOURCE_PASSWORD=db-password:latest'
 
