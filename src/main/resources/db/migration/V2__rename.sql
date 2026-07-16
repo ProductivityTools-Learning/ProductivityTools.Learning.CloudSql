@@ -1,0 +1,1 @@
+ALTER TABLE Counter RENAME COLUMN counte_value TO counter_value;

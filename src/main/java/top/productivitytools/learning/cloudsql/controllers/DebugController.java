@@ -1,4 +1,4 @@
-package top.productivitytools.learning.cloudsql;
+package top.productivitytools.learning.cloudsql.controllers;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/debug")
-public class DebugCongroller {
+public class DebugController {
     
     @GetMapping("/hello")
     public String Hello() {

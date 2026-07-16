@@ -1,0 +1,1 @@
+INSERT INTO Counter (counter_value) VALUES (0);
